@@ -1,2 +1,1 @@
-https://DavidBorie.github.io/Spoing/
-
+https://davidborie.github.io/Spoing/
