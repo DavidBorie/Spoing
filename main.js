@@ -9,16 +9,17 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: false,
+            debug: true,
         }
     },
     scene: [
         new Ui(),
 
 
-        new TableauTiled("Tile"),
-        new TableauM("test de monstre"),
-    /*    new Tableau00("Des étoiles"),
+        new Level1("Prologue"),
+        //new TableauTiled("Tile"),
+    /*  new TableauM("test de monstre"),
+        new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),
         new Tableau03("Des plateformes qui bougent"),
@@ -80,3 +81,9 @@ window.onload = function() {
     window.addEventListener("resize", resize, false);
     window.addEventListener("scroll", resize, false);
 }
+
+
+
+
+
+

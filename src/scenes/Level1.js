@@ -1,12 +1,12 @@
-class TableauTiled extends Tableau{
+class Level1 extends Tableau{
 
   preload() {
     super.preload();
     // ------pour TILED-------------
     // nos images
-    this.load.image('tiles', 'assets/toto/Tuiles/tableauTiledTileset.png');
+    this.load.image('tiles', 'assets/toto/Tuiles/levelSets.png');
     //les données du tableau qu'on a créé dans TILED
-    this.load.tilemapTiledJSON('map', 'assets/toto/Level1.json');
+    this.load.tilemapTiledJSON('map', 'assets/toto/Level.json');
 
 
     //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -25,7 +25,7 @@ create() {
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('tableauTiledTileset', 'tiles');
+        this.tileset = this.map.addTilesetImage('levelSets', 'tiles');
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
@@ -36,10 +36,18 @@ create() {
 
         //---- ajoute les plateformes simples ----------------------------
 
-        this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
-        this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
+
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
-        this.eau = this.map.createLayer('eau', this.tileset, 0, 0);
+        this.fond = this.map.createLayer('fond', this.tileset, 0, 0);
+        this.assets = this.map.createLayer('assets', this.tileset, 0, 0);
+        this.arbres = this.map.createLayer('arbres', this.tileset, 0, 0);
+        this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
+        this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
+
+     
+     
+    
+
 
 
         //on définit les collisions, plusieurs méthodes existent:
@@ -54,7 +62,18 @@ create() {
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.solides);
-        this.player.setDepth(100);
+        this.devant.setDepth(5);
+        this.arbres.setDepth(4);
+        this.player.setDepth(3);
+        this.assets.setDepth(2);
+        this.fond.setDepth(1);
+
+
+        const spawnPoint = this.map.findObject("point", obj => obj.name === "Player");
+
+        this.player.setPosition(spawnPoint.x, spawnPoint.y);
+
+
         /*
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('final', 'tiles');
@@ -70,7 +89,7 @@ create() {
         this.physics.add.collider(this.star1, this.platforms);
 */
         //this.derriere.setDepth(z--);
-    }
-  
+ 
 
+          }
 }
