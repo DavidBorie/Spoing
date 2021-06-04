@@ -8,7 +8,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setBounce(0);
         this.setGravityY(700);
         this.setFriction(1,1);
-        this.setMaxVelocity(600,600);
+        this.setMaxVelocity(600,650);
 
         this.setBodySize(this.body.width-20,this.body.height-20);
         this.setOffset(10, 20);
@@ -51,6 +51,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             frames: this.anims.generateFrameNumbers('player', {start: 25, end: 23}),
             frameRate: 2
         });
+       
+
 
         this._directionX=0;
         this._directionY=0;

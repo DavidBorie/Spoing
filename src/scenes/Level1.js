@@ -6,7 +6,7 @@ class Level1 extends Tableau{
     // nos images
     this.load.image('tiles', 'assets/toto/Tuiles/levelSets.png');
     //les données du tableau qu'on a créé dans TILED
-    this.load.tilemapTiledJSON('map', 'assets/toto/Level.json');
+    this.load.tilemapTiledJSON('map', 'assets/toto/Level0.json');
 
 
     //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -37,12 +37,20 @@ create() {
         //---- ajoute les plateformes simples ----------------------------
 
 
+        this.background = this.map.createLayer('background', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         this.fond = this.map.createLayer('fond', this.tileset, 0, 0);
         this.assets = this.map.createLayer('assets', this.tileset, 0, 0);
         this.arbres = this.map.createLayer('arbres', this.tileset, 0, 0);
         this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
         this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
+        this.jump = this.map.createLayer('jump', this.tileset, 0, 0);
+
+        this.jumpPad = this.physics.add.sprite(6155,815,'star');
+        this.jumpPad.body.allowGravity=false;
+        this.jumpPad.body.immovable=true;
+        this.jumpPad.scaleX = 5;
+
 
      
      
@@ -62,11 +70,13 @@ create() {
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.solides);
-        this.devant.setDepth(5);
-        this.arbres.setDepth(4);
-        this.player.setDepth(3);
-        this.assets.setDepth(2);
-        this.fond.setDepth(1);
+        this.physics.add.collider(this.player, this.jumpPad);
+        this.devant.setDepth(7);
+        this.arbres.setDepth(6);
+        this.player.setDepth(5);
+        this.assets.setDepth(4);
+        this.fond.setDepth(3);
+        this.background.setDepth(1);
 
 
         const spawnPoint = this.map.findObject("point", obj => obj.name === "Player");
@@ -92,4 +102,9 @@ create() {
  
 
           }
+
+          
+          
+
+          
 }

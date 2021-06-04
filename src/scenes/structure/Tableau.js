@@ -43,6 +43,14 @@ class Tableau extends Phaser.Scene{
     update(){
         super.update();
         this.player.move();
+
+        if(this.jumpPad){
+            if(this.jumpPad.body.touching.up){
+                this.player.setVelocityY(-2000);
+            }
+        }
+
+
     }
 
     ramasserEtoile (player, star)
